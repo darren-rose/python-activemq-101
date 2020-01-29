@@ -10,7 +10,7 @@ password = os.getenv('ACTIVEMQ_PASSWORD', 'password')
 
 print('host port user password', host, port, user, password)
 
-conn = stomp.Connection11([(host, port)])
+conn = stomp.Connection11([(host, int(port))])
 conn.set_listener('', MySubscriber())
 conn.start()
 conn.connect(user, password, wait=True)
