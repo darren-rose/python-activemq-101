@@ -1,12 +1,18 @@
 import stomp
 import time
-
+import os
 from subscriber import MySubscriber
 
 conn = stomp.Connection11([('localhost', 61613)])
 conn.start()
 conn.set_listener('', MySubscriber())
-conn.connect('admin', 'p4cm4n', wait=True)
+
+user = os.getenv('ACTIVEMQ_USER', 'admin')
+password = os.getenv('ACTIVEMQ_PASSWORD', 'password')
+
+print('user', user)
+
+conn.connect(user, password, wait=True)
 conn.subscribe(destination='My.Fancy.Queue', id=1, ack='auto')
 while True:
     time.sleep(5)

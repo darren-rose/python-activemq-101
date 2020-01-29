@@ -5,5 +5,5 @@
 * ActiveMQ with stomp enabled
 
 ```
-python main.py
+ACTIVEMQ_USER=admin ACTIVEMQ_PASSWORD=password python main.py
 ```
